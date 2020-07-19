@@ -11,6 +11,14 @@ import UIKit
 class CommentsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var comments = [Comment]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    
+    }
 
 }
 
@@ -22,7 +30,9 @@ extension CommentsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CommentCell
+        let comment = comments[indexPath.row]
+        cell.configure(with: comment)
         return cell
     }
 }
